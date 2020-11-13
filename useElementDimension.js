@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 
-export default function useElementDimension(elementId, type = 'width', defaultWidth = 200, defaultHeight = null) {
+export default function useElementDimension(elementId, type, defaultWidth , defaultHeight) {
   const [widthDimension, setWidthDimension] = useState(defaultWidth);
   const [heightDimension, setHeightDimension] = useState(defaultHeight);
 
