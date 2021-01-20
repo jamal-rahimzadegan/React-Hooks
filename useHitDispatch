@@ -1,0 +1,13 @@
+import { useCallback } from 'react';
+import { useDispatch } from 'react-redux';
+
+export const useHitDispatch = () => {
+  const dispatch = useDispatch();
+
+  return useCallback(
+    ({ type, payload }) => {
+      dispatch({ type, payload });
+    },
+    [dispatch]
+  );
+};
