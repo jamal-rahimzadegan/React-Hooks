@@ -1,0 +1,10 @@
+import { useRef, useEffect } from 'react';
+
+export const useDidUpdate = (varToCheck) => {
+  const refForData = useRef(null);
+  useEffect(() => {
+    refForData.current = varToCheck;
+  }, [varToCheck]);
+
+  return refForData.current;
+};
