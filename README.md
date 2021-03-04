@@ -1,10 +1,9 @@
 <div align="center">
     <img src="./react-logo.svg" alt='react-icon' height="25%" width="25%"/>
-  <h3>
+  <h2>
    Handy React Hooks (Written by me)
     <br />
-    <br />
-  </h1>
+  </h2>
 </div>
 
 - `useComponentWillMount` &mdash; Brings ComponentWillMount lifycycle to the function components
