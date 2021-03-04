@@ -1,7 +1,6 @@
 <div align="center">
     <img src="./react-logo.svg" alt='react-icon' height="25%" width="25%"/>
   <h3>
-    <br />
    Handy React Hooks (Written by me)
     <br />
     <br />
