@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
-export const useHitDispatch = () => {
+export const useHitAction = () => {
   const dispatch = useDispatch();
 
   return useCallback(
