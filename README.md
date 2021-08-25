@@ -14,4 +14,3 @@
 - `useElementDimension` &mdash; Gives dimensions of an element
 - `useHitAction` &mdash; DRY your dispatch hook (for calling redux actions)
 - `useVisibility` &mdash; detects if tab is active or not 
-- 
