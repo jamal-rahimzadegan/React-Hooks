@@ -11,7 +11,7 @@ export default function useClickOutside(args: ArgsType): void {
   const { id, isRunning, fnToListen, callbackFn } = args;
 
   useEffect(() => {
-    !!fnToListen && fnToListen();
+     fnToListen?.();
 
     if (isRunning) {
       document.addEventListener('click', handleClick);
