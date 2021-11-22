@@ -13,4 +13,5 @@
 - `useDidUpdate` &mdash; Brings ComponentDidUpdate lifycycle to the function components
 - `useElementDimension` &mdash; Gives dimensions of an element
 - `useHitAction` &mdash; DRY your dispatch hook (for calling redux actions)
-- `useVisibility` &mdash; detects if tab is active or not 
+- `useVisibility` &mdash; Detects if tab is active or not 
+- `useRenderCount` &mdash; Counts the number of an component render
