@@ -3,20 +3,21 @@ import { useEffect } from 'react';
 interface ArgsType {
   id: string;
   isRunning: boolean;
-  fnToListen?: Function;
-  callbackFn?: Function;
+  runOnUpdate?: Function;
+  cb?: Function;
 }
 
 export default function useClickOutside(args: ArgsType): void {
-  const { id, isRunning, fnToListen, callbackFn } = args;
+  const { id, isRunning, runOnUpdate, cb } = args;
 
   useEffect(() => {
-     fnToListen?.();
+    runOnUpdate?.();
 
     if (isRunning) {
       document.addEventListener('click', handleClick);
       document.addEventListener('ontouchstart', handleClick);
     }
+
     return () => {
       document.removeEventListener('click', handleClick);
       document.removeEventListener('ontouchstart', handleClick);
@@ -24,6 +25,6 @@ export default function useClickOutside(args: ArgsType): void {
   }, [isRunning]);
 
   const handleClick = (e) => {
-    if (!e.target.closest('#' + id)) callbackFn();
+    if (!e.target.closest('#' + id)) cb?.();
   };
 }
