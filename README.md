@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./react-logo.svg" alt='react-icon' height="25%" width="25%"/>
+    <img src="./react-logo.png" alt='react-icon' height="25%" width="25%"/>
   <h2>
    Handy React Hooks (Written by me)
     <br />
