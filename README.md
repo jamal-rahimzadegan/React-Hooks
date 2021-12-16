@@ -15,3 +15,4 @@
 - `useHitAction` &mdash; DRY your dispatch hook (for calling redux actions)
 - `useVisibility` &mdash; Detects if tab is active or not 
 - `useRenderCount` &mdash; Counts the number of component render
+- `useLocation` &mdash; Working with location
