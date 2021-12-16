@@ -1,9 +1,5 @@
 <div align="center">
-    <img src="./react-logo.png" alt='react-icon' height="auto" width="25%"/>
-  <h2>
-   Handy React Hooks (Written by me)
-    <br />
-  </h2>
+    <img src="./react-logo.svg" alt='react-logo' height="auto" width="25%"/>
 </div>
 
 
