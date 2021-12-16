@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./react-logo.svg" alt='react-logo' height="auto" width="25%"/>
+    <img src="./react-logo.png" alt='react-logo' height="auto" width="25%"/>
 </div>
 
 
