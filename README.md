@@ -13,3 +13,4 @@
 - `useVisibility` &mdash; Detects if tab is active or not 
 - `useRenderCount` &mdash; Counts the number of component render
 - `useLocation` &mdash; Working with location
+- `useListenEvent` &mdash; Listening to event in a safe and easy way
