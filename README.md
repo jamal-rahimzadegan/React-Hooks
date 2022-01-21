@@ -14,3 +14,5 @@
 - `useRenderCount` &mdash; Counts the number of component render
 - `useLocation` &mdash; Working with location
 - `useListenEvent` &mdash; Listening to event in a safe and easy way
+- `useGetDevice` &mdash; Get the device info and you can extend it!!!
+- `useDebounce` &mdash; Get the debounced input string (for improving performance and decreasing rerenders)
