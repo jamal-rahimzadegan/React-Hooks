@@ -3,7 +3,7 @@
     <br/>
 </div>
 
-
+- `useDebounce` &mdash; Get the debounced input string (for improving performance and decreasing rerenders)
 - `useComponentWillMount` &mdash; Brings ComponentWillMount lifycycle to the function components
 - `useClickOutside` &mdash; Detect if clicked outside an element and pass it callback
 - `useDetectDevice` &mdash; Detect the user device (is mobile or not)
@@ -14,5 +14,6 @@
 - `useRenderCount` &mdash; Counts the number of component render
 - `useLocation` &mdash; Working with location
 - `useListenEvent` &mdash; Listening to event in a safe and easy way
-- `useGetDevice` &mdash; Get the device info and you can extend it!!!
-- `useDebounce` &mdash; Get the debounced input string (for improving performance and decreasing rerenders)
+- `useDeviceInfo` &mdash; Get the device info and you can extend it!!!
+- `useKeyPress` &mdash; Listen to key press and event pass it a callback.
+
