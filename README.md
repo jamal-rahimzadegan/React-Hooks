@@ -16,4 +16,4 @@
 - `useListenEvent` &mdash; Listening to event in a safe and easy way
 - `useDeviceInfo` &mdash; Get the device info and you can extend it!!!
 - `useKeyPress` &mdash; Listen to key press and event pass it a callback.
-
+- `useHistoryAction` &mdash; Detect backward and forward click in the browser
