@@ -5,22 +5,27 @@ interface Params {
 	cb: Function;
 }
 
+type EventAction = "addEventListener" | "removeEventListener";
+
 export default function useDismiss(args: Params) {
 	const { id, cb } = args;
 
-	const handleClick = (ev) => !ev.target.closest("#" + id) && cb();
+	const handleClickOutside = (ev) => !ev.target.closest("#" + id) && cb();
 
-	const manageEvents = (action: "add" | "remove") => {
-		document[`${action}EventListener`]("click", handleClick);
-		document[`${action}EventListener`]("ontouchstart", handleClick);
-		document[`${action}EventListener`]("scroll", () => cb());
+	const handleKeyPress = (ev) => ev.key === "Escape" && cb();
+
+	const manageEvents = (action: EventAction) => {
+		document[action]("scroll", () => cb());
+		document[action]("keydown", handleKeyPress);
+		document[action]("click", handleClickOutside);
+		document[action]("ontouchstart", handleClickOutside);
 	};
 
 	useEffect(() => {
-		manageEvents("add");
+		manageEvents("addEventListener");
 
 		return () => {
-			manageEvents("remove");
+			manageEvents("removeEventListener");
 		};
 	}, []);
 }
