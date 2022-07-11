@@ -2,23 +2,25 @@ import { useEffect } from "react";
 
 interface Params {
 	id: string;
-	cb: () => unknown;
+	cb: Function;
 }
 
-export default function useDismiss(args: Params): void {
+export default function useDismiss(args: Params) {
 	const { id, cb } = args;
 
-	const handleClick = (e) => !e.target.closest("#" + id) && cb();
+	const handleClick = (ev) => !ev.target.closest("#" + id) && cb();
+
+	const manageEvents = (action: "add" | "remove") => {
+		document[`${action}EventListener`]("click", handleClick);
+		document[`${action}EventListener`]("ontouchstart", handleClick);
+		document[`${action}EventListener`]("scroll", () => cb());
+	};
 
 	useEffect(() => {
-		document.addEventListener("click", handleClick);
-		document.addEventListener("ontouchstart", handleClick);
-		document.addEventListener("scroll", cb);
+		manageEvents("add");
 
 		return () => {
-			document.removeEventListener("click", handleClick);
-			document.removeEventListener("ontouchstart", handleClick);
-			document.removeEventListener("scroll", cb);
+			manageEvents("remove");
 		};
 	}, []);
 }
