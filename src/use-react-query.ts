@@ -1,19 +1,15 @@
 import { QueryFunction, useQuery, UseQueryResult, UseQueryOptions } from "react-query";
 import queryKes from "FROM_YOUR_KEYS";
 
-// R stands for the response type (Result)
-type QueryPayload<R> = [
-  queryKey: keyof typeof queryKes,
-  fetchData: QueryFunction<any>,
-  options?: UseQueryOptions<R>
-];
+type Params<Res> = {
+  queryKey: keyof typeof queryKes
+  fetcher: QueryFunction<any>
+  options?: UseQueryOptions<Res>
+}
 
-export default function useReactQuery<R>(...payload: QueryPayload<R>): UseQueryResult<R, Error> {
-  const [queryKey, fetchData, options] = payload;
+type Output<Res> = UseQueryResult<Res, Error>
 
-  return useQuery<R, Error>(queryKey, fetchData, {
-    staleTime: 31_556_952_000, // cache time
-    retry: false,
-    ...options,
-  });
+export default function useReactQuery<Res>(params: Params<Res>): Output<Res> {
+  const { queryKey, fetcher, options } = params
+  return useQuery<Res, Error>(queryKey, fetcher, options)
 }
