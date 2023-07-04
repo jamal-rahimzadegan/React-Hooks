@@ -1,31 +1,41 @@
-import { useEffect } from "react";
+import { KeyboardEvent, MouseEvent, useCallback, useEffect } from 'react';
 
-interface Params {
-	id: string;
-	cb: Function;
-}
+type Params = [id: string, cb: Function];
+type EventAction = 'addEventListener' | 'removeEventListener';
 
-type EventAction = "addEventListener" | "removeEventListener";
+export default function useDismiss(...args: Params) {
+  const [id, cb] = args;
 
-export default function useDismiss(args: Params) {
-	const { id, cb } = args;
+  const handleClickOutside = useCallback(
+    (evt: MouseEvent | TouchEvent | UIEvent | Event) => {
+      const isOutside = (evt.target as HTMLElement).closest('#' + id);
+      return !isOutside && cb();
+    },
+    [cb, id]
+  );
 
-	const handleClickOutside = (ev) => !ev.target.closest("#" + id) && cb();
+  const handleKeyPress = useCallback(
+    (e: UIEvent | Event | KeyboardEvent<HTMLElement>) => {
+      return (e as KeyboardEvent).key === 'Escape' && cb();
+    },
+    [cb]
+  );
 
-	const handleKeyPress = (ev) => ev.key === "Escape" && cb();
+  const manageEvents = useCallback(
+    (action: EventAction) => {
+      document[action]('scroll', () => cb());
+      document[action]('keydown', handleKeyPress);
+      document[action]('click', handleClickOutside);
+      document[action]('ontouchstart', handleClickOutside);
+    },
+    [handleKeyPress, handleClickOutside, cb]
+  );
 
-	const manageEvents = (action: EventAction) => {
-		document[action]("scroll", () => cb());
-		document[action]("keydown", handleKeyPress);
-		document[action]("click", handleClickOutside);
-		document[action]("ontouchstart", handleClickOutside);
-	};
+  useEffect(() => {
+    manageEvents('addEventListener');
 
-	useEffect(() => {
-		manageEvents("addEventListener");
-
-		return () => {
-			manageEvents("removeEventListener");
-		};
-	}, []);
+    return () => {
+      manageEvents('removeEventListener');
+    };
+  }, [manageEvents]);
 }
