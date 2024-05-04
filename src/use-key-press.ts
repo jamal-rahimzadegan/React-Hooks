@@ -1,30 +1,30 @@
+
 import { useEffect, useState } from "react";
 
-interface Options {
-	onKeyPress?: Function;
-	onKeyRelease?: Function;
-}
+type Options = {
+  onKeyDown?: () => unknown;
+  onKeyUp?: () => unknown;
+};
 
-export default function useKeyPress(targetKey: string, options: Options) {
-	const { onKeyPress, onKeyRelease } = options;
-	const [isPressed, setIsPressed] = useState<boolean>(false);
+export function useKeyPress(target: string, options: Options): boolean {
+  const { onKeyDown: onKeyPress, onKeyUp: onKeyRelease } = options;
+  const [isPressed, setIsPressed] = useState<boolean>(false);
 
-	const handleKeyOperations = ({ type, key }) => {
-		setIsPressed((prevValue) => !prevValue);
+  const handleKeyOperations = ({ type, key }: KeyboardEvent) => {
+    setIsPressed((prevValue) => !prevValue);
+    if (type === "keydown" && key === target) onKeyPress?.();
+    if (type === "keyup" && key === target) onKeyRelease?.();
+  };
 
-		if (type === "keydown" && key === targetKey) onKeyPress?.();
-		if (type === "keyup" && key === targetKey) onKeyRelease?.();
-	};
+  useEffect(() => {
+    window.addEventListener("keydown", handleKeyOperations);
+    window.addEventListener("keyup", handleKeyOperations);
 
-	useEffect(() => {
-		window.addEventListener("keydown", handleKeyOperations);
-		window.addEventListener("keyup", handleKeyOperations);
+    return () => {
+      window.removeEventListener("keydown", handleKeyOperations);
+      window.removeEventListener("keyup", handleKeyOperations);
+    };
+  }, []);
 
-		return () => {
-			window.removeEventListener("keydown", handleKeyOperations);
-			window.removeEventListener("keyup", handleKeyOperations);
-		};
-	}, []);
-
-	return isPressed;
+  return isPressed;
 }
